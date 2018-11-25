@@ -72,6 +72,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "_boolean_option"
+        },
+        {
+          "type": "SYMBOL",
           "name": "_string_option"
         }
       ]
@@ -147,6 +151,40 @@
     "string_option_key": {
       "type": "STRING",
       "value": "watermark"
+    },
+    "_boolean_option": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "boolean_option_key"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "equals"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_booleanlike"
+        }
+      ]
+    },
+    "boolean_option_key": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "wordwraparcs"
+        },
+        {
+          "type": "STRING",
+          "value": "wordwrapentities"
+        },
+        {
+          "type": "STRING",
+          "value": "wordwrapboxes"
+        }
+      ]
     },
     "start_token": {
       "type": "CHOICE",
@@ -322,6 +360,69 @@
         {
           "type": "SYMBOL",
           "name": "_size"
+        },
+        {
+          "type": "STRING",
+          "value": "\""
+        }
+      ]
+    },
+    "_booleanlike": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "boolean"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "booleanlike_string"
+        }
+      ]
+    },
+    "boolean": {
+      "type": "SYMBOL",
+      "name": "_boolean"
+    },
+    "_boolean": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "true"
+        },
+        {
+          "type": "STRING",
+          "value": "false"
+        },
+        {
+          "type": "STRING",
+          "value": "on"
+        },
+        {
+          "type": "STRING",
+          "value": "off"
+        },
+        {
+          "type": "STRING",
+          "value": "0"
+        },
+        {
+          "type": "STRING",
+          "value": "1"
+        }
+      ]
+    },
+    "booleanlike_string": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\""
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_boolean"
         },
         {
           "type": "STRING",

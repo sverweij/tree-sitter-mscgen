@@ -32,8 +32,7 @@ module.exports = grammar({
     option: $ => choice(
       $._numerical_option,
       $._size_option,
-      // TODO - hier gebleven
-      // $._boolean_option,
+      $._boolean_option,
       $._string_option
     ),
 
@@ -63,6 +62,18 @@ module.exports = grammar({
     ),
 
     string_option_key: $ => 'watermark',
+
+    _boolean_option: $ => seq(
+      $.boolean_option_key,
+      $.equals,
+      $._booleanlike
+    ),
+
+    boolean_option_key: $ => choice(
+      'wordwraparcs',
+      'wordwrapentities',
+      'wordwrapboxes'
+    ),
 
     // entities --------------------------------
 
@@ -141,6 +152,28 @@ module.exports = grammar({
     sizelike_string: $ => seq(
       '"',
       $._size,
+      '"'
+    ),
+
+    _booleanlike: $ => choice(
+      $.boolean,
+      $.booleanlike_string
+    ),
+
+    boolean: $ => $._boolean,
+
+    _boolean: $ => choice(
+      'true',
+      'false',
+      'on',
+      'off',
+      '0',
+      '1'
+    ),
+
+    booleanlike_string: $ => seq(
+      '"',
+      $._boolean,
       '"'
     ),
 

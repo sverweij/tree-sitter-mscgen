@@ -1,9 +1,9 @@
 ===
-options - size - cardinal
+options - boolean
 ===
 
 msc {
-    width=100;
+    wordwraparcs=true;
 }
 
 ---
@@ -13,9 +13,9 @@ msc {
     (curly_bracket_open)
     (options
         (option
-            (size_option_key)
+            (boolean_option_key)
             (equals)
-            (size)
+            (boolean)
         )
         (semicolon)
     )
@@ -23,11 +23,11 @@ msc {
 )
 
 ===
-options - size - real
+options - boolean - alternate (off)
 ===
 
 msc {
-    width=100.1;
+    wordwraparcs=off;
 }
 
 ---
@@ -37,22 +37,21 @@ msc {
     (curly_bracket_open)
     (options
         (option
-            (size_option_key)
+            (boolean_option_key)
             (equals)
-            (size)
+            (boolean)
         )
         (semicolon)
     )
     (curly_bracket_close)
 )
 
-
 ===
-options - size - 'auto'
+options - boolean - alternate (0/1)
 ===
 
 msc {
-    width=auto;
+    wordwraparcs=1;
 }
 
 ---
@@ -62,9 +61,9 @@ msc {
     (curly_bracket_open)
     (options
         (option
-            (size_option_key)
+            (boolean_option_key)
             (equals)
-            (size)
+            (boolean)
         )
         (semicolon)
     )
@@ -72,11 +71,11 @@ msc {
 )
 
 ===
-options - size - cardinal as a string
+options - boolean - quoted
 ===
 
 msc {
-    width="100";
+    wordwraparcs="true";
 }
 
 ---
@@ -86,9 +85,9 @@ msc {
     (curly_bracket_open)
     (options
         (option
-            (size_option_key)
+            (boolean_option_key)
             (equals)
-            (sizelike_string)
+            (booleanlike_string)
         )
         (semicolon)
     )
@@ -96,11 +95,11 @@ msc {
 )
 
 ===
-options - size - real as a string
+options - boolean - quoted alternate (on/off)
 ===
 
 msc {
-    width="0.99";
+    wordwraparcs="off";
 }
 
 ---
@@ -110,22 +109,21 @@ msc {
     (curly_bracket_open)
     (options
         (option
-            (size_option_key)
+            (boolean_option_key)
             (equals)
-            (sizelike_string)
+            (booleanlike_string)
         )
         (semicolon)
     )
     (curly_bracket_close)
 )
 
-
 ===
-options - size - 'auto' as a string
+options - boolean - quoted alterante (0/1)
 ===
 
 msc {
-    width="auto";
+    wordwraparcs="1";
 }
 
 ---
@@ -135,9 +133,9 @@ msc {
     (curly_bracket_open)
     (options
         (option
-            (size_option_key)
+            (boolean_option_key)
             (equals)
-            (sizelike_string)
+            (booleanlike_string)
         )
         (semicolon)
     )
@@ -145,11 +143,11 @@ msc {
 )
 
 ===
-options - size ERROR - string
+options - boolean ERROR - regular string for value
 ===
 
 msc {
-    width="this is a string";
+    wordwraparcs="waar";
 }
 
 ---
@@ -158,20 +156,20 @@ msc {
     (start_token)
     (curly_bracket_open)
     (ERROR
-        (size_option_key)
+        (boolean_option_key)
         (equals)
-        (UNEXPECTED 'h')
+        (UNEXPECTED 'a')
         (semicolon)
     )
     (curly_bracket_close)
 )
 
 ===
-options - size ERROR - boolean
+options - boolean ERROR - number > 1 for value
 ===
 
 msc {
-    width=true;
+    wordwraparcs=3;
 }
 
 ---
@@ -180,7 +178,7 @@ msc {
     (start_token)
     (curly_bracket_open)
     (ERROR
-        (size_option_key)
+        (boolean_option_key)
         (equals)
         (semicolon)
     )
@@ -188,11 +186,11 @@ msc {
 )
 
 ===
-options - size ERROR - percentage
+options - boolean ERROR - unquoted string for value
 ===
 
 msc {
-    width=100%;
+    wordwraparcs=unquotedthing;
 }
 
 ---
@@ -200,43 +198,10 @@ msc {
 (sequence_chart
     (start_token)
     (curly_bracket_open)
-    (options
-        (option
-            (size_option_key)
-            (equals)
-            (size) 
-        )
-        (ERROR
-            (UNEXPECTED '%')
-        )
-        (semicolon)
-    )
-    (curly_bracket_close)
-)
-
-===
-options - size ERROR - quoted percentage
-===
-
-msc {
-    width="100%";
-}
-
----
-
-(sequence_chart
-    (start_token)
-    (curly_bracket_open)
-    (options
-        (option
-            (size_option_key)
-            (equals)
-            (sizelike_string 
-                (ERROR
-                    (UNEXPECTED '%')
-                )
-            )
-        )
+    (ERROR
+        (boolean_option_key)
+        (equals)
+        (UNEXPECTED 'u')
         (semicolon)
     )
     (curly_bracket_close)

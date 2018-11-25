@@ -59,7 +59,6 @@ msc {
     (ERROR
         (string_option_key)
         (equals)
-        (UNEXPECTED 'f')
         (semicolon)
     )
     (curly_bracket_close)
