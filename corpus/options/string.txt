@@ -1,0 +1,67 @@
+===
+options - string
+===
+
+msc {
+    watermark="this is a watermark";
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (options
+        (option
+            (string_option_key)
+            (equals)
+            (string)
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+===
+options - string ERROR: providing a number
+===
+
+msc {
+    watermark=42;
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (ERROR
+        (string_option_key)
+        (equals)
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+===
+options - string ERROR: providing something unquoted
+===
+
+msc {
+    watermark=false;
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (ERROR
+        (string_option_key)
+        (equals)
+        (UNEXPECTED 'f')
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+

@@ -1,0 +1,29 @@
+===
+options - combis - multiple numerical options
+===
+
+msc {
+    hscale=0.4, arcgradient=2;
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (options
+        (option
+            (numerical_option_key)
+            (equals)
+            (number)
+        )
+        (comma)
+        (option
+            (numerical_option_key)
+            (equals)
+            (number)
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)

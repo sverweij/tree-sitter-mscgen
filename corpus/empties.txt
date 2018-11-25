@@ -1,0 +1,52 @@
+===
+empty chart msc 
+===
+
+msc {
+
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (curly_bracket_close)
+)
+
+===
+empty chart xu 
+===
+
+xu {
+
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (curly_bracket_close)
+)
+
+===
+empty chart msc - with a comment
+===
+
+/* multi-line
+ * comment of some sort
+ */
+msc {
+
+}
+
+---
+
+(sequence_chart
+    (comment)
+    (start_token)
+    (curly_bracket_open)
+    (curly_bracket_close)
+)
+

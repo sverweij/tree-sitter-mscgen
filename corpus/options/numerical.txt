@@ -1,0 +1,139 @@
+===
+options - numerical - cardinal
+===
+
+msc {
+    hscale=1;
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (options
+        (option
+            (numerical_option_key)
+            (equals)
+            (number)
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+===
+options - numerical - real
+===
+
+msc {
+    hscale=0.9;
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (options
+        (option
+            (numerical_option_key)
+            (equals)
+            (number)
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+===
+options - numerical in a string - cardinal
+===
+
+msc {
+    hscale="1";
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (options
+        (option
+            (numerical_option_key)
+            (equals)
+            (numberlike_string)
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+===
+options - numerical in a string - real;
+===
+
+msc {
+    hscale="0.9";
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (options
+        (option
+            (numerical_option_key)
+            (equals)
+            (numberlike_string)
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+===
+options - numerical ERROR - passing a string
+===
+
+msc {
+    hscale="not a number";
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (ERROR
+        (numerical_option_key)
+        (equals)
+        (UNEXPECTED 'n')
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+===
+options - numerical ERROR - passing a boolean
+===
+
+msc {
+    hscale=false;
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (ERROR
+        (numerical_option_key)
+        (equals)
+        (UNEXPECTED 'f')
+        (semicolon)
+    )
+    (curly_bracket_close)
+)

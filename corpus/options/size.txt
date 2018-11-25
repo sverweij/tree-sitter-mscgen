@@ -1,0 +1,244 @@
+===
+options - size - cardinal
+===
+
+msc {
+    width=100;
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (options
+        (option
+            (size_option_key)
+            (equals)
+            (size)
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+===
+options - size - real
+===
+
+msc {
+    width=100.1;
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (options
+        (option
+            (size_option_key)
+            (equals)
+            (size)
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+
+===
+options - size - 'auto'
+===
+
+msc {
+    width=auto;
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (options
+        (option
+            (size_option_key)
+            (equals)
+            (size)
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+===
+options - size - cardinal as a string
+===
+
+msc {
+    width="100";
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (options
+        (option
+            (size_option_key)
+            (equals)
+            (sizelike_string)
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+===
+options - size - real as a string
+===
+
+msc {
+    width="0.99";
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (options
+        (option
+            (size_option_key)
+            (equals)
+            (sizelike_string)
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+
+===
+options - size - 'auto' as a string
+===
+
+msc {
+    width="auto";
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (options
+        (option
+            (size_option_key)
+            (equals)
+            (sizelike_string)
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+===
+options - size ERROR - string
+===
+
+msc {
+    width="this is a string";
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (ERROR
+        (size_option_key)
+        (equals)
+        (UNEXPECTED 't')
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+===
+options - size ERROR - boolean
+===
+
+msc {
+    width=true;
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (ERROR
+        (size_option_key)
+        (equals)
+        (UNEXPECTED 't')
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+===
+options - size ERROR - percentage
+===
+
+msc {
+    width=100%;
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (options
+        (option
+            (size_option_key)
+            (equals)
+            (size) 
+        )
+        (ERROR
+            (UNEXPECTED '%')
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+===
+options - size ERROR - quoted percentage
+===
+
+msc {
+    width="100%";
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (options
+        (option
+            (size_option_key)
+            (equals)
+            (sizelike_string 
+                (ERROR
+                    (UNEXPECTED '%')
+                )
+            )
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)

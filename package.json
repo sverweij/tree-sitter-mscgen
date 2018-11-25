@@ -1,0 +1,69 @@
+{
+  "name": "tree-sitter-mscgen",
+  "version": "1.0.0-beta-0",
+  "description": "Tree-sitter grammar for MscGen",
+  "main": "index.js",
+  "scripts": {
+    "build": "run-s build:generate build:gyp",
+    "build:generate": "tree-sitter generate",
+    "build:gyp": "node-gyp build",
+    "lint": "eslint grammar.js",
+    "lint:fix": "eslint --fix grammar.js",
+    "test": "tree-sitter test",
+    "update-dependencies": "run-s upem:update upem:install lint:fix build test",
+    "upem:install": "npm install",
+    "upem:update": "npm outdated --json | upem"
+  },
+  "keywords": [
+    "tree-sitter",
+    "grammar",
+    "state-machine-cat"
+  ],
+  "author": "Sander Verweij (https://sverweij.github.io/)",
+  "license": "MIT",
+  "files": [
+    "binding.gyp",
+    "index.js",
+    "LICENSE",
+    "README.md",
+    "package.json",
+    "src/"
+  ],
+  "dependencies": {
+    "nan": "2.11.1"
+  },
+  "devDependencies": {
+    "eslint": "5.9.0",
+    "eslint-config-standard": "12.0.0",
+    "eslint-plugin-import": "2.14.0",
+    "eslint-plugin-node": "8.0.0",
+    "eslint-plugin-promise": "4.0.1",
+    "eslint-plugin-standard": "4.0.0",
+    "node-gyp": "3.8.0",
+    "npm-run-all": "4.1.5",
+    "tree-sitter-cli": "0.13.10",
+    "upem": "1.0.2"
+  },
+  "eslintConfig": {
+    "extends": "standard",
+    "globals": {
+      "grammar": false,
+      "seq": false,
+      "choice": false,
+      "repeat": false,
+      "repeat1": false,
+      "optional": false,
+      "prec": false,
+      "token": false,
+      "alias": false
+    }
+  },
+  "homepage": "https://mscgen.js.org",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sverweij/tree-sitter-mscgen"
+  },
+  "bugs": {
+    "url": "https://github.com/sverweij/tree-sitter-mscgen/issues"
+  }
+}
