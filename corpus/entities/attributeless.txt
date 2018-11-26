@@ -1,0 +1,144 @@
+===
+entities - one entity (identifier)
+===
+
+msc {
+    anentity;
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (entities
+        (entity
+            (entity_identifier)
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+===
+entities - one entity (string)
+===
+
+msc {
+    "an entity";
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (entities
+        (entity
+            (entity_identifier)
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+===
+entities - multiple entities (identifiers & strings mixed)
+===
+
+msc {
+    usah,
+    "an entity",
+    "another entity";
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (entities
+        (entity
+            (entity_identifier)
+        )
+        (comma)
+        (entity
+            (entity_identifier)
+        )
+        (comma)
+        (entity
+            (entity_identifier)
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+===
+entities - one entity ERROR - illegal char
+===
+
+msc {
+    1-legal;
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (entities
+        (entity
+            (entity_identifier)
+        )
+        (ERROR 
+            (UNEXPECTED 'l')
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+===
+entities - one entity ERROR - no separator
+===
+
+msc {
+    s pace;
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (entities
+        (entity
+            (entity_identifier)
+        )
+        (ERROR 
+            (UNEXPECTED 'p')
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+===
+entities - one entity ERROR - no closing ;
+===
+
+msc {
+    ent
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (ERROR
+        (entity_identifier)
+    )
+    (curly_bracket_close)
+)

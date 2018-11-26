@@ -201,7 +201,7 @@ msc {
     (ERROR
         (boolean_option_key)
         (equals)
-        (UNEXPECTED 'u')
+        (UNEXPECTED 'n')
         (semicolon)
     )
     (curly_bracket_close)

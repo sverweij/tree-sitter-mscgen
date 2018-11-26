@@ -1,0 +1,50 @@
+===
+entities - attributes - empty
+===
+
+msc {
+    anentity [
+        
+    ];
+}
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (entities
+        (entity
+            (entity_identifier)
+            (entity_attributes
+                (square_bracket_open)
+                (square_bracket_close)
+            )
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+===
+entities - attributes ERROR - empty but forgotten closing bracket
+===
+
+msc {
+    anentity[;
+}
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (entities
+        (entity
+            (entity_identifier)
+        )
+        (ERROR
+            (square_bracket_open)
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)

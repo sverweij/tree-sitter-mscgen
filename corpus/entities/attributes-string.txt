@@ -1,0 +1,93 @@
+===
+entities - attributes - string
+===
+
+msc {
+    anentity [
+        label="An Entity"
+    ];
+}
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (entities
+        (entity
+            (entity_identifier)
+            (entity_attributes
+                (square_bracket_open)
+                (entity_attribute
+                    (string_entity_attribute_key)
+                    (equals)
+                    (string)
+                )
+                (square_bracket_close)
+            )
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+===
+entities - attributes - string with a booleanesque value
+===
+
+msc {
+    anentity [
+        label=on
+    ];
+}
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (entities
+        (entity
+            (entity_identifier)
+            (entity_attributes
+                (square_bracket_open)
+                (ERROR
+                    (string_entity_attribute_key)
+                    (equals)
+                )
+                (square_bracket_close)
+            )
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+===
+entities - attributes - string with a number value
+===
+
+msc {
+    anentity [
+        label=42
+    ];
+}
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (entities
+        (entity
+            (entity_identifier)
+            (entity_attributes
+                (square_bracket_open)
+                (ERROR
+                    (string_entity_attribute_key)
+                    (equals)
+                )
+                (square_bracket_close)
+            )
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)

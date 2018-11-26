@@ -110,7 +110,7 @@ msc {
     (ERROR
         (numerical_option_key)
         (equals)
-        (UNEXPECTED 'n')
+        (UNEXPECTED ' ')
         (semicolon)
     )
     (curly_bracket_close)

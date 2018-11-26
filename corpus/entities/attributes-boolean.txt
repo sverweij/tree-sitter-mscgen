@@ -1,0 +1,128 @@
+===
+entities - attributes - boolean
+===
+
+msc {
+    anentity [
+        activation
+    ];
+}
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (entities
+        (entity
+            (entity_identifier)
+            (entity_attributes
+                (square_bracket_open)
+                (entity_attribute
+                    (boolean_entity_attribute_key)
+                )
+                (square_bracket_close)
+            )
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+===
+entities - attributes - boolean with an attribute
+===
+
+msc {
+    anentity [
+        activation=on
+    ];
+}
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (entities
+        (entity
+            (entity_identifier)
+            (entity_attributes
+                (square_bracket_open)
+                (entity_attribute
+                    (boolean_entity_attribute_key)
+                    (equals)
+                    (boolean)
+                )
+                (square_bracket_close)
+            )
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+===
+entities - attributes ERROR - boolean with a string value
+===
+
+msc {
+    anentity [
+        activation="allez"
+    ];
+}
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (entities
+        (entity
+            (entity_identifier)
+            (entity_attributes
+                (square_bracket_open)
+                (entity_attribute
+                    (boolean_entity_attribute_key)
+                )
+                (ERROR
+                    (equals)
+                    (UNEXPECTED 'l')
+                )
+                (square_bracket_close)
+            )
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+===
+entities - attributes ERROR - boolean with a number value
+===
+
+msc {
+    anentity [
+        activation=111
+    ];
+}
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (entities
+        (entity
+            (entity_identifier)
+            (entity_attributes
+                (square_bracket_open)
+                (entity_attribute
+                    (boolean_entity_attribute_key)
+                    (equals)
+                    (boolean)
+                )
+                (ERROR)
+                (square_bracket_close)
+            )
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)

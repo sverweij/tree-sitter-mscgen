@@ -11,8 +11,8 @@ module.exports = grammar({
       $.start_token,
       $.curly_bracket_open,
       optional($.options),
-      // optional($.entities),
-      // optional($.arcs),
+      optional($.entities),
+      optional($.arcs),
       $.curly_bracket_close
     ),
 
@@ -76,8 +76,148 @@ module.exports = grammar({
     ),
 
     // entities --------------------------------
+    entities: $ => seq(
+      repeat(
+        seq(
+          $.entity,
+          $.comma
+        )
+      ),
+      $.entity,
+      $.semicolon
+    ),
+
+    entity: $ => seq(
+      $.entity_identifier,
+      optional($.entity_attributes)
+    ),
+
+    entity_attributes: $ => seq(
+      $.square_bracket_open,
+      optional(
+        seq(
+          repeat(
+            seq(
+              $.entity_attribute,
+              $.comma
+            )
+          ),
+          $.entity_attribute
+        )
+      ),
+      $.square_bracket_close
+    ),
+
+    entity_attribute: $ => choice(
+      $._string_entity_attribute,
+      $._boolean_entity_attribute
+    ),
+
+    _boolean_entity_attribute: $ => seq(
+      $.boolean_entity_attribute_key,
+      optional(
+        seq(
+          $.equals,
+          $._booleanlike
+        )
+      )
+    ),
+
+    boolean_entity_attribute_key: $ => 'activation',
+
+    _string_entity_attribute: $ => seq(
+      $.string_entity_attribute_key,
+      $.equals,
+      $.string
+    ),
+
+    string_entity_attribute_key: $ => choice(
+      'label',
+      'idurl',
+      'id',
+      'url',
+      'linecolor',
+      'linecolour',
+      'textcolor',
+      'textcolour',
+      'textbgcolor',
+      'textbgcolour',
+      'arctextcolor',
+      'arctextcolour',
+      'arctextbgcolor',
+      'arctextbgcolour',
+      'title'
+    ),
+
+    // TODO hier gebleven. Next: unit tests voor entities
+
+    // _number_arc_attribute: $ => seq(
+    //   $.number_arc_attribute_key,
+    //   $.equals,
+    //   $._numberlike
+    // ),
+
+    // number_arc_attribute_key: $ => 'arcskip',
 
     // arcs ------------------------------------
+    arcs: $ => repeat1(
+      seq(
+        repeat(
+          seq(
+            $.arc,
+            $.comma
+          )
+        ),
+        $.arc,
+        $.semicolon
+      )
+    ),
+
+    arc: $ => seq(
+      choice(
+        $._dual_arc
+        // $._single_arc,
+        // $._comment_arc,
+        // $._span_arc
+      )
+      // optional($.arc_attributes)
+    ),
+
+    _dual_arc: $ => seq(
+      $.entity_identifier,
+      $.arrow,
+      $.entity_identifier
+    ),
+
+    arrow: $ => choice(
+      '<->',
+      '<=>',
+      '<:>',
+      '<<=>>',
+      '<<>>',
+      '->',
+      '=>',
+      ':>',
+      '=>>',
+      '>>',
+      '-x',
+      '-X',
+      '<-',
+      '<=',
+      '<:',
+      '<<=',
+      '<<',
+      'x-',
+      'X-',
+      '--',
+      '==',
+      '::',
+      '..',
+      'box',
+      'abox',
+      'rbox',
+      'note'
+    ),
 
     // generic stuff ---------------------------
 
