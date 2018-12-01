@@ -38,6 +38,11 @@ msc {
     (ERROR
         (string_option_key)
         (equals)
+    )
+    (entities
+        (entity
+            (entity_identifier)
+        )
         (semicolon)
     )
     (curly_bracket_close)

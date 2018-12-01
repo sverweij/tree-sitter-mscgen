@@ -31,6 +31,77 @@ msc {
 )
 
 ===
+entities - attributes - string with a # sign in it
+===
+
+msc {
+    anentity [
+        label="An Entity",
+        textbgcolor="#00FF00"
+    ];
+}
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (entities
+        (entity
+            (entity_identifier)
+            (entity_attributes
+                (square_bracket_open)
+                (entity_attribute
+                    (string_entity_attribute_key)
+                    (equals)
+                    (string)
+                )
+                (comma)
+                (entity_attribute
+                    (string_entity_attribute_key)
+                    (equals)
+                    (string)
+                )
+                (square_bracket_close)
+            )
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+===
+entities - attributes - string with an escaped quote (\") in it
+===
+
+msc {
+    anentity [
+        label="An \"Entity\""
+    ];
+}
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (entities
+        (entity
+            (entity_identifier)
+            (entity_attributes
+                (square_bracket_open)
+                (entity_attribute
+                    (string_entity_attribute_key)
+                    (equals)
+                    (string)
+                )
+                (square_bracket_close)
+            )
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+===
 entities - attributes - string with a booleanesque value
 ===
 
@@ -49,10 +120,11 @@ msc {
             (entity_identifier)
             (entity_attributes
                 (square_bracket_open)
-                (ERROR
-                    (string_entity_attribute_key)
-                    (equals)
-                )
+                    (entity_attribute
+                        (string_entity_attribute_key)
+                        (equals)
+                        (string)
+                    )
                 (square_bracket_close)
             )
         )
@@ -80,9 +152,10 @@ msc {
             (entity_identifier)
             (entity_attributes
                 (square_bracket_open)
-                (ERROR
+                (entity_attribute
                     (string_entity_attribute_key)
                     (equals)
+                    (string)
                 )
                 (square_bracket_close)
             )

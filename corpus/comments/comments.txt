@@ -1,0 +1,111 @@
+===
+comments - multi-line comment before
+===
+
+/* multi-line
+ * comment of some sort
+ */
+msc {
+
+}
+
+---
+
+(sequence_chart
+    (comment)
+    (start_token)
+    (curly_bracket_open)
+    (curly_bracket_close)
+)
+
+===
+comments - multi-line comment inside
+===
+
+msc {
+    /* multi-line
+    * comment of some sort
+    */
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (comment)
+    (curly_bracket_close)
+)
+
+===
+comments - single line // comment before
+===
+
+// // comment
+msc {
+
+}
+
+---
+
+(sequence_chart
+    (comment)
+    (start_token)
+    (curly_bracket_open)
+    (curly_bracket_close)
+)
+
+===
+comments - single line // comment inside
+===
+
+msc {
+    // '//' comment
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (comment)
+    (curly_bracket_close)
+)
+
+
+===
+comments - single line # comment before
+===
+
+# comment also
+msc {
+
+}
+
+---
+
+(sequence_chart
+    (comment)
+    (start_token)
+    (curly_bracket_open)
+    (curly_bracket_close)
+)
+
+===
+comments - single line # comment inside
+===
+
+
+msc {
+    # comment also
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (comment)
+    (curly_bracket_close)
+)
+

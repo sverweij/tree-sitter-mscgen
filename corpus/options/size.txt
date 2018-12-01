@@ -160,7 +160,6 @@ msc {
     (ERROR
         (size_option_key)
         (equals)
-        (UNEXPECTED 'h')
         (semicolon)
     )
     (curly_bracket_close)

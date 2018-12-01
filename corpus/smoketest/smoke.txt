@@ -1,0 +1,58 @@
+===
+smoketest - on the water
+===
+# A smoke test for most features
+msc {
+  /* numerical option*/
+  arcgradient=20,
+  wordwraparcs=on, // boolean option
+  watermark="smoke test"; # string option
+
+  a [
+  	label="\"Quoted A\"", // string with escape in a label
+    textcolor="#00ff00"   // # in a prop
+  ],
+  // quoted strings & escapes for 'em
+  "\"Quoted B\"",        # escaped quotes in an entity name
+  c [
+  	label="\"Quoted C\"",
+    textcolour="white", // color, alternative spelling
+    linecolor="blue",
+    textbgcolor="green"
+  ];
+
+  "\"Quoted B\"" => "*" [
+     label="hi de hi!\n going to where? // blah"
+  ];
+  
+  a >> "\"Quoted B\"" [
+  	label="to the loo!"
+  ],
+  c >> "\"Quoted B\""[
+    label="nowhere"
+  ];
+  
+  ...,
+  ---;
+
+  # doing the inline arc thing
+  "\"Quoted B\"" loop c [label="until valid excuse" ]{
+    "\"Quoted B\"" =>> c[
+        label="gonna talk to you then",
+        linecolor=red
+    ],
+    c => c [
+        label="o noes!"
+    ];
+    c rbox c [
+        label="getRandomExcuse()"
+    ];
+    c >> "\"Quoted B\"" [
+        label="<inject excuse>"
+    ];
+  };
+}
+// comment at the end
+
+---
+(sequence_chart (comment) (start_token) (curly_bracket_open) (comment) (options (option (numerical_option_key) (equals) (number)) (comma) (option (boolean_option_key) (equals) (boolean)) (comma) (comment) (option (string_option_key) (equals) (string)) (semicolon)) (comment) (entities (entity (entity_identifier) (entity_attributes (square_bracket_open) (entity_attribute (string_entity_attribute_key) (equals) (string)) (comma) (comment) (entity_attribute (string_entity_attribute_key) (equals) (string)) (comment) (square_bracket_close))) (comma) (comment) (entity (entity_identifier)) (comma) (comment) (entity (entity_identifier) (entity_attributes (square_bracket_open) (entity_attribute (string_entity_attribute_key) (equals) (string)) (comma) (entity_attribute (string_entity_attribute_key) (equals) (string)) (comma) (comment) (entity_attribute (string_entity_attribute_key) (equals) (string)) (comma) (entity_attribute (string_entity_attribute_key) (equals) (string)) (square_bracket_close))) (semicolon)) (arcs (arc (entity_identifier) (forward_arrow) (entity_wildcard) (arc_attributes (square_bracket_open) (arc_attribute (string_arc_attribute_key) (equals) (string)) (square_bracket_close))) (semicolon) (arc (entity_identifier) (forward_arrow) (entity_identifier) (arc_attributes (square_bracket_open) (arc_attribute (string_arc_attribute_key) (equals) (string)) (square_bracket_close))) (comma) (arc (entity_identifier) (forward_arrow) (entity_identifier) (arc_attributes (square_bracket_open) (arc_attribute (string_arc_attribute_key) (equals) (string)) (square_bracket_close))) (semicolon) (arc (single_arc)) (comma) (arc (comment_arc)) (semicolon) (comment) (arc (entity_identifier) (inline_expression_token) (entity_identifier) (arc_attributes (square_bracket_open) (arc_attribute (string_arc_attribute_key) (equals) (string)) (square_bracket_close)) (inline_expression (curly_bracket_open) (arcs (arc (entity_identifier) (forward_arrow) (entity_identifier) (arc_attributes (square_bracket_open) (arc_attribute (string_arc_attribute_key) (equals) (string)) (comma) (arc_attribute (string_arc_attribute_key) (equals) (string)) (square_bracket_close))) (comma) (arc (entity_identifier) (forward_arrow) (entity_identifier) (arc_attributes (square_bracket_open) (arc_attribute (string_arc_attribute_key) (equals) (string)) (square_bracket_close))) (semicolon) (arc (entity_identifier) (box) (entity_identifier) (arc_attributes (square_bracket_open) (arc_attribute (string_arc_attribute_key) (equals) (string)) (square_bracket_close))) (semicolon) (arc (entity_identifier) (forward_arrow) (entity_identifier) (arc_attributes (square_bracket_open) (arc_attribute (string_arc_attribute_key) (equals) (string)) (square_bracket_close))) (semicolon)) (curly_bracket_close))) (semicolon)) (curly_bracket_close) (comment))

@@ -158,7 +158,6 @@ msc {
     (ERROR
         (boolean_option_key)
         (equals)
-        (UNEXPECTED 'a')
         (semicolon)
     )
     (curly_bracket_close)
@@ -180,6 +179,11 @@ msc {
     (ERROR
         (boolean_option_key)
         (equals)
+    )
+    (entities
+        (entity
+            (entity_identifier)
+        )
         (semicolon)
     )
     (curly_bracket_close)
@@ -201,7 +205,11 @@ msc {
     (ERROR
         (boolean_option_key)
         (equals)
-        (UNEXPECTED 'n')
+    )
+    (entities
+        (entity
+            (entity_identifier)
+        )
         (semicolon)
     )
     (curly_bracket_close)

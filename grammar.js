@@ -128,7 +128,10 @@ module.exports = grammar({
     _string_entity_attribute: $ => seq(
       $.string_entity_attribute_key,
       $.equals,
-      $.string
+      choice(
+        $.string,
+        alias($.identifier, $.string)
+      )
     ),
 
     string_entity_attribute_key: $ => choice(
@@ -165,16 +168,21 @@ module.exports = grammar({
       )
     ),
 
-    arc: $ => seq(
-      choice(
+    arc: $ => choice(
+      seq(
         $._dual_arc,
+        optional($.arc_attributes)
+      ),
+      seq(
         $.single_arc,
+        optional($.arc_attributes)
+      ),
+      seq(
         $.comment_arc,
-        $._inline_expression_arc
-      )
-      // optional($.arc_attributes)
+        optional($.arc_attributes)
+      ),
+      $._inline_expression_arc
     ),
-
     _dual_arc: $ => choice(
       seq(
         $.entity_identifier,
@@ -252,7 +260,7 @@ module.exports = grammar({
       $.entity_identifier,
       $.inline_expression_token,
       $.entity_identifier,
-      // optional($.arc_attributes)
+      optional($.arc_attributes),
       $.inline_expression
     ),
 
@@ -280,13 +288,72 @@ module.exports = grammar({
       $.curly_bracket_close
     ),
 
-    // _number_arc_attribute: $ => seq(
-    //   $.number_arc_attribute_key,
-    //   $.equals,
-    //   $._numberlike
-    // ),
+    arc_attributes: $ => seq(
+      $.square_bracket_open,
+      optional(
+        seq(
+          repeat(
+            seq(
+              $.arc_attribute,
+              $.comma
+            )
+          ),
+          $.arc_attribute
+        )
+      ),
+      $.square_bracket_close
+    ),
 
-    // number_arc_attribute_key: $ => 'arcskip',
+    arc_attribute: $ => choice(
+      $._string_arc_attribute,
+      $._number_arc_attribute,
+      $._boolean_arc_attribute,
+      $.value_only_arc_attribute_key
+    ),
+
+    _string_arc_attribute: $ => seq(
+      $.string_arc_attribute_key,
+      $.equals,
+      choice(
+        $.string,
+        alias($.identifier, 'string')
+      )
+    ),
+
+    string_arc_attribute_key: $ => choice(
+      'label',
+      'idurl',
+      'id',
+      'url',
+      'linecolor',
+      'linecolour',
+      'textcolor',
+      'textcolour',
+      'textbgcolor',
+      'textbgcolour',
+      'title'
+    ),
+
+    _boolean_arc_attribute: $ => seq(
+      $.boolean_arc_attribute_key,
+      $.equals,
+      $._booleanlike
+    ),
+
+    boolean_arc_attribute_key: $ => 'activation',
+
+    value_only_arc_attribute_key: $ => choice(
+      'activate',
+      'deactivate'
+    ),
+
+    _number_arc_attribute: $ => seq(
+      $.number_arc_attribute_key,
+      $.equals,
+      $._numberlike
+    ),
+
+    number_arc_attribute_key: $ => 'arcskip',
 
     // generic stuff ---------------------------
 
@@ -313,11 +380,13 @@ module.exports = grammar({
 
     _dot: $ => '.',
 
-    _identifier: $ => /([^;, "\t\n\r=\-><:{[*])+/,
+    _identifier: $ => /[A-Za-z_0-9]+/,
+
+    identifier: $ => $._identifier,
 
     entity_identifier: $ => choice(
       $._identifier,
-      $._quoted_string
+      $._string
     ),
 
     _numberlike: $ => choice(
@@ -328,17 +397,13 @@ module.exports = grammar({
     number: $ => $._number,
 
     _number: $ => choice(
-      $._cardinal,
+      $._integer,
       $._real
     ),
 
-    _cardinal: $ => /[0-9]+/,
+    _integer: $ => /-?[0-9]+/,
 
-    _real: $ => seq(
-      $._cardinal,
-      $._dot,
-      $._cardinal
-    ),
+    _real: $ => /-?[0-9]+\.[0-9]+/,
 
     numberlike_string: $ => seq(
       '"',
@@ -386,12 +451,21 @@ module.exports = grammar({
       '"'
     ),
 
-    string: $ => $._quoted_string,
+    string: $ => $._string,
 
-    _quoted_string: $ => seq(
+    _string: $ => seq(
       '"',
-      /[^"]*/,
+      repeat(
+        choice(
+          /[^"]/,
+          '\\"'
+        )
+      ),
       '"'
+    ),
+
+    escape_sequence: $ => token.immediate(
+      '\\"'
     ),
 
     entity_wildcard: $ => choice(
@@ -403,14 +477,16 @@ module.exports = grammar({
     // at https://github.com/tree-sitter/tree-sitter-c/blob/master/grammar.js
     // ... and they reference stackoverflow:
     // http://stackoverflow.com/questions/13014947/regex-to-match-a-c-style-multiline-comment/36328890#36328890
-    comment: $ => token(choice(
-      seq('//', /.*/),
-      seq('#', /.*/),
-      seq(
-        '/*',
-        /[^*]*\*+([^/*][^*]*\*+)*/,
-        '/'
+    comment: $ => token(
+      choice(
+        prec(-10, /\/\/.*/),
+        prec(-10, /#.*/),
+        seq(
+          '/*',
+          /[^*]*\*+([^/*][^*]*\*+)*/,
+          '/'
+        )
       )
-    ))
+    )
   }
 })

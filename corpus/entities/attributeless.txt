@@ -116,9 +116,7 @@ msc {
         (entity
             (entity_identifier)
         )
-        (ERROR 
-            (UNEXPECTED 'c')
-        )
+        (ERROR)
         (semicolon)
     )
     (curly_bracket_close)

@@ -1,0 +1,45 @@
+===
+arcs - attributes - string
+===
+
+msc {
+    a,b;
+
+    a => b [label="some label"];
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (entities
+        (entity
+            (entity_identifier)
+        )
+        (comma)
+        (entity
+            (entity_identifier)
+        )
+        (semicolon)
+    )
+    (arcs
+        (arc
+            (entity_identifier)
+            (forward_arrow)
+            (entity_identifier)
+            (arc_attributes
+                (square_bracket_open)
+                    (arc_attribute
+                        (string_arc_attribute_key)
+                        (equals)
+                        (string)
+                    )
+                (square_bracket_close)
+            )
+
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)

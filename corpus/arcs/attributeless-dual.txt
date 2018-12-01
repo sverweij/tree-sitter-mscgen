@@ -304,7 +304,6 @@ msc {
     )
     (ERROR
         (entity_wildcard)
-        (UNEXPECTED ';')
         (semicolon)
     )
     (curly_bracket_close)
@@ -337,7 +336,6 @@ msc {
     )
     (ERROR
         (entity_wildcard)
-        (UNEXPECTED ';')
         (semicolon)
     )
     (curly_bracket_close)
@@ -436,7 +434,6 @@ msc {
     )
     (ERROR
         (entity_wildcard)
-        (UNEXPECTED ';')
         (semicolon)
     )
     (curly_bracket_close)

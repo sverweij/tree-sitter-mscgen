@@ -84,7 +84,6 @@ msc {
                 )
                 (ERROR
                     (equals)
-                    (UNEXPECTED 'l')
                 )
                 (square_bracket_close)
             )

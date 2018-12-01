@@ -122,3 +122,113 @@ msc {
     )
     (curly_bracket_close)
 )
+
+===
+entities - multiple - each with multiple attributes (and # within strings)
+===
+msc {
+  a [linecolor="black", textbgcolor="lightgrey", arclinecolor="black", arctextcolor="black"],
+  b [linecolor="#008800", textbgcolor="#CCFFCC", arclinecolor="#008800", arctextcolor="#008800"],
+  c [linecolor="#FF0000", textbgcolor="#FFCCCC", arclinecolor="#FF0000", arctextcolor="#FF0000"];
+}
+---
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (entities
+        (entity
+            (entity_identifier)
+            (entity_attributes
+                (square_bracket_open)
+                    (entity_attribute
+                        (string_entity_attribute_key)
+                        (equals)
+                        (string)
+                    )
+                    (comma)
+                    (entity_attribute
+                        (string_entity_attribute_key)
+                        (equals)
+                        (string)
+                    )
+                    (comma)
+                    (entity_attribute
+                        (string_entity_attribute_key)
+                        (equals)
+                        (string)
+                    )
+                    (comma)
+                    (entity_attribute
+                        (string_entity_attribute_key)
+                        (equals)
+                        (string)
+                    )
+                (square_bracket_close)
+            )
+        )
+        (comma)
+        (entity
+            (entity_identifier)
+            (entity_attributes
+                (square_bracket_open)
+                    (entity_attribute
+                        (string_entity_attribute_key)
+                        (equals)
+                        (string)
+                    )
+                    (comma)
+                    (entity_attribute
+                        (string_entity_attribute_key)
+                        (equals)
+                        (string)
+                    )
+                    (comma)
+                    (entity_attribute
+                        (string_entity_attribute_key)
+                        (equals)
+                        (string)
+                    )
+                    (comma)
+                    (entity_attribute
+                        (string_entity_attribute_key)
+                        (equals)
+                        (string)
+                    )
+                (square_bracket_close)
+            )
+        )
+        (comma)
+        (entity
+            (entity_identifier)
+            (entity_attributes
+                (square_bracket_open)
+                    (entity_attribute
+                        (string_entity_attribute_key)
+                        (equals)
+                        (string)
+                    )
+                    (comma)
+                    (entity_attribute
+                        (string_entity_attribute_key)
+                        (equals)
+                        (string)
+                    )
+                    (comma)
+                    (entity_attribute
+                        (string_entity_attribute_key)
+                        (equals)
+                        (string)
+                    )
+                    (comma)
+                    (entity_attribute
+                        (string_entity_attribute_key)
+                        (equals)
+                        (string)
+                    )
+                (square_bracket_close)
+            )
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
