@@ -142,22 +142,14 @@ module.exports = grammar({
       'textcolour',
       'textbgcolor',
       'textbgcolour',
+      'arclinecolor',
+      'arclinecolour',
       'arctextcolor',
       'arctextcolour',
       'arctextbgcolor',
       'arctextbgcolour',
       'title'
     ),
-
-    // TODO hier gebleven. Next: unit tests voor entities
-
-    // _number_arc_attribute: $ => seq(
-    //   $.number_arc_attribute_key,
-    //   $.equals,
-    //   $._numberlike
-    // ),
-
-    // number_arc_attribute_key: $ => 'arcskip',
 
     // arcs ------------------------------------
     arcs: $ => repeat1(
@@ -175,49 +167,126 @@ module.exports = grammar({
 
     arc: $ => seq(
       choice(
-        $._dual_arc
-        // $._single_arc,
-        // $._comment_arc,
-        // $._span_arc
+        $._dual_arc,
+        $.single_arc,
+        $.comment_arc,
+        $._inline_expression_arc
       )
       // optional($.arc_attributes)
     ),
 
-    _dual_arc: $ => seq(
-      $.entity_identifier,
-      $.arrow,
-      $.entity_identifier
+    _dual_arc: $ => choice(
+      seq(
+        $.entity_identifier,
+        choice(
+          $.forward_arrow,
+          $.bidirectional_arrow
+        ),
+        choice(
+          $.entity_identifier,
+          $.entity_wildcard
+        )
+      ),
+      seq(
+        choice(
+          $.entity_identifier,
+          $.entity_wildcard
+        ),
+        $.backward_arrow,
+        $.entity_identifier
+      ),
+      seq(
+        $.entity_identifier,
+        $.box,
+        $.entity_identifier
+      )
     ),
 
-    arrow: $ => choice(
-      '<->',
-      '<=>',
-      '<:>',
-      '<<=>>',
-      '<<>>',
+    forward_arrow: $ => choice(
       '->',
       '=>',
       ':>',
       '=>>',
       '>>',
       '-x',
-      '-X',
+      '-X'
+    ),
+
+    backward_arrow: $ => choice(
       '<-',
       '<=',
       '<:',
       '<<=',
       '<<',
       'x-',
-      'X-',
+      'X-'
+    ),
+
+    bidirectional_arrow: $ => choice(
+      '<->',
+      '<=>',
+      '<:>',
+      '<<=>>',
+      '<<>>',
       '--',
       '==',
       '::',
-      '..',
-      'box',
+      '..'
+    ),
+
+    box: $ => choice(
+      'note',
       'abox',
       'rbox',
-      'note'
+      'box'
     ),
+
+    single_arc: $ => choice(
+      '|||',
+      '...'
+    ),
+
+    comment_arc: $ => '---',
+
+    _inline_expression_arc: $ => seq(
+      $.entity_identifier,
+      $.inline_expression_token,
+      $.entity_identifier,
+      // optional($.arc_attributes)
+      $.inline_expression
+    ),
+
+    inline_expression_token: $ => choice(
+      'alt',
+      'else',
+      'opt',
+      'break',
+      'par',
+      'seq',
+      'strict',
+      'neg',
+      'critical',
+      'ignore',
+      'consider',
+      'assert',
+      'loop',
+      'ref',
+      'exc'
+    ),
+
+    inline_expression: $ => seq(
+      $.curly_bracket_open,
+      optional($.arcs),
+      $.curly_bracket_close
+    ),
+
+    // _number_arc_attribute: $ => seq(
+    //   $.number_arc_attribute_key,
+    //   $.equals,
+    //   $._numberlike
+    // ),
+
+    // number_arc_attribute_key: $ => 'arcskip',
 
     // generic stuff ---------------------------
 
@@ -244,7 +313,7 @@ module.exports = grammar({
 
     _dot: $ => '.',
 
-    _identifier: $ => /([^;, "\t\n\r=\-><:{[])+/,
+    _identifier: $ => /([^;, "\t\n\r=\-><:{[*])+/,
 
     entity_identifier: $ => choice(
       $._identifier,
@@ -323,6 +392,11 @@ module.exports = grammar({
       '"',
       /[^"]*/,
       '"'
+    ),
+
+    entity_wildcard: $ => choice(
+      '*',
+      '"*"'
     ),
 
     // comment matching: shamelessly stolen from the c tree sitter grammer

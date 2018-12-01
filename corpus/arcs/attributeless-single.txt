@@ -1,0 +1,65 @@
+===
+arcs - single arc |||
+===
+
+msc {
+    |||;
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (arcs
+        (arc
+            (single_arc)
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+===
+arcs - single arc ...
+===
+
+msc {
+    ...;
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (arcs
+        (arc
+            (single_arc)
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+===
+arcs - single arc 'comment' ---
+===
+
+msc {
+    ---;
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (arcs
+        (arc
+            (comment_arc)
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)

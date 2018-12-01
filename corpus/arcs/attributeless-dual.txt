@@ -1,0 +1,475 @@
+===
+arcs - fwd
+===
+
+msc {
+    a,b;
+
+    a => b;
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (entities
+        (entity
+            (entity_identifier)
+        )
+        (comma)
+        (entity
+            (entity_identifier)
+        )
+        (semicolon)
+    )
+    (arcs
+        (arc
+            (entity_identifier)
+            (forward_arrow)
+            (entity_identifier)
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+===
+arcs - back
+===
+
+msc {
+    a,b;
+
+    a << b;
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (entities
+        (entity
+            (entity_identifier)
+        )
+        (comma)
+        (entity
+            (entity_identifier)
+        )
+        (semicolon)
+    )
+    (arcs
+        (arc
+            (entity_identifier)
+            (backward_arrow)
+            (entity_identifier)
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+===
+arcs - bidi
+===
+
+msc {
+    a,b;
+
+    a <=> b;
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (entities
+        (entity
+            (entity_identifier)
+        )
+        (comma)
+        (entity
+            (entity_identifier)
+        )
+        (semicolon)
+    )
+    (arcs
+        (arc
+            (entity_identifier)
+            (bidirectional_arrow)
+            (entity_identifier)
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+===
+arcs - boxes
+===
+
+msc {
+    a,b;
+
+    a box b;
+    a abox b;
+    a rbox b;
+    a note b;
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (entities
+        (entity
+            (entity_identifier)
+        )
+        (comma)
+        (entity
+            (entity_identifier)
+        )
+        (semicolon)
+    )
+    (arcs
+        (arc
+            (entity_identifier)
+            (box)
+            (entity_identifier)
+        )
+        (semicolon)
+        (arc
+            (entity_identifier)
+            (box)
+            (entity_identifier)
+        )
+        (semicolon)
+        (arc
+            (entity_identifier)
+            (box)
+            (entity_identifier)
+        )
+        (semicolon)
+        (arc
+            (entity_identifier)
+            (box)
+            (entity_identifier)
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+===
+arcs - fwd to an entity wildcard
+===
+
+msc {
+    a,b;
+
+    a => *;
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (entities
+        (entity
+            (entity_identifier)
+        )
+        (comma)
+        (entity
+            (entity_identifier)
+        )
+        (semicolon)
+    )
+    (arcs
+        (arc
+            (entity_identifier)
+            (forward_arrow)
+            (entity_wildcard)
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+===
+arcs - bidi to an entity wildcard
+===
+
+msc {
+    a,b;
+
+    a <=> *;
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (entities
+        (entity
+            (entity_identifier)
+        )
+        (comma)
+        (entity
+            (entity_identifier)
+        )
+        (semicolon)
+    )
+    (arcs
+        (arc
+            (entity_identifier)
+            (bidirectional_arrow)
+            (entity_wildcard)
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+
+
+===
+arcs - bck to an entity wildcard
+===
+
+msc {
+    a,b,c;
+
+    * << b;
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (entities
+        (entity
+            (entity_identifier)
+        )
+        (comma)
+        (entity
+            (entity_identifier)
+        )
+        (comma)
+        (entity
+            (entity_identifier)
+        )
+        (semicolon)
+    )
+    (arcs
+        (arc
+            (entity_wildcard)
+            (backward_arrow)
+            (entity_identifier)
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+===
+arcs - ERROR - fwd from an entity wildcard
+===
+
+msc {
+    a,b;
+
+    * => b;
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (entities
+        (entity
+            (entity_identifier)
+        )
+        (comma)
+        (entity
+            (entity_identifier)
+        )
+        (semicolon)
+    )
+    (ERROR
+        (entity_wildcard)
+        (UNEXPECTED ';')
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+===
+arcs - ERROR - bidi from an entity wildcard
+===
+
+msc {
+    a,b;
+
+    * == b;
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (entities
+        (entity
+            (entity_identifier)
+        )
+        (comma)
+        (entity
+            (entity_identifier)
+        )
+        (semicolon)
+    )
+    (ERROR
+        (entity_wildcard)
+        (UNEXPECTED ';')
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+===
+arcs - ERROR - bck from an entity wildcard
+===
+
+msc {
+    a,b;
+
+    a << *;
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (entities
+        (entity
+            (entity_identifier)
+        )
+        (comma)
+        (entity
+            (entity_identifier)
+        )
+        (semicolon)
+    )
+    (ERROR
+        (entity_identifier)
+        (backward_arrow)
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+===
+arcs - ERROR - box to an entity wildcard
+===
+
+msc {
+    a,b;
+
+    a note *;
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (entities
+        (entity
+            (entity_identifier)
+        )
+        (comma)
+        (entity
+            (entity_identifier)
+        )
+        (semicolon)
+    )
+    (ERROR
+        (entity_identifier)
+        (box)
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+===
+arcs - ERROR - box from an entity wildcard
+===
+
+msc {
+    a,b;
+
+    * rbox a;
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (entities
+        (entity
+            (entity_identifier)
+        )
+        (comma)
+        (entity
+            (entity_identifier)
+        )
+        (semicolon)
+    )
+    (ERROR
+        (entity_wildcard)
+        (UNEXPECTED ';')
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+===
+arcs - ERROR - arrow from _and_ to entity wildcards
+===
+
+msc {
+    a,b;
+
+    * => *;
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (entities
+        (entity
+            (entity_identifier)
+        )
+        (comma)
+        (entity
+            (entity_identifier)
+        )
+        (semicolon)
+    )
+    (ERROR
+        (entity_wildcard)
+        (semicolon)
+    )
+    (curly_bracket_close)
+)

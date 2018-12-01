@@ -1,0 +1,124 @@
+===
+entities - multiple
+===
+
+msc {
+    anentity, anotherentity, "another entity entirely";
+}
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (entities
+        (entity
+            (entity_identifier)
+        )
+        (comma)
+        (entity
+            (entity_identifier)
+        )
+        (comma)
+        (entity
+            (entity_identifier)
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+===
+entities - multiple with attributes on next entities
+===
+
+msc {
+    anentity,
+    anotherentity [label="another entity"],
+    "another entity entirely" [label="three", arclinecolour="red"];
+}
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (entities
+        (entity
+            (entity_identifier)
+        )
+        (comma)
+        (entity
+            (entity_identifier)
+            (entity_attributes
+                (square_bracket_open)
+                    (entity_attribute
+                        (string_entity_attribute_key)
+                        (equals)
+                        (string)
+                    )
+                (square_bracket_close)
+            )
+            
+        )
+        (comma)
+        (entity
+            (entity_identifier)
+            (entity_attributes
+                (square_bracket_open)
+                    (entity_attribute
+                        (string_entity_attribute_key)
+                        (equals)
+                        (string)
+                    )
+                    (comma)
+                    (entity_attribute
+                        (string_entity_attribute_key)
+                        (equals)
+                        (string)
+                    )
+                    (square_bracket_close)
+                )
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+===
+entities - multiple with attributes on first entity
+===
+
+msc {
+    anentity [label="an entity"],
+    anotherentity,
+    "another entity entirely";
+}
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (entities
+        (entity
+            (entity_identifier)
+            (entity_attributes
+                (square_bracket_open)
+                    (entity_attribute
+                        (string_entity_attribute_key)
+                        (equals)
+                        (string)
+                    )
+                (square_bracket_close)
+            )
+        )
+        (comma)
+        (entity
+            (entity_identifier)
+        )
+        (comma)
+        (entity
+            (entity_identifier)
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)

@@ -1,0 +1,191 @@
+===
+arcs - inline expression - empty alt
+===
+
+msc {
+    a,b;
+
+    a alt b {};
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (entities
+        (entity
+            (entity_identifier)
+        )
+        (comma)
+        (entity
+            (entity_identifier)
+        )
+        (semicolon)
+    )
+    (arcs
+        (arc
+            (entity_identifier)
+            (inline_expression_token)
+            (entity_identifier)
+            (inline_expression
+                (curly_bracket_open)
+                (curly_bracket_close)
+            )
+            
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+===
+arcs - inline expression - alt with an arc
+===
+
+msc {
+    a,b;
+
+    a alt b {
+        a => b;
+    };
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (entities
+        (entity
+            (entity_identifier)
+        )
+        (comma)
+        (entity
+            (entity_identifier)
+        )
+        (semicolon)
+    )
+    (arcs
+        (arc
+            (entity_identifier)
+            (inline_expression_token)
+            (entity_identifier)
+            (inline_expression
+                (curly_bracket_open)
+                (arcs
+                    (arc
+                        (entity_identifier)
+                        (forward_arrow)
+                        (entity_identifier)
+                    )
+                    (semicolon)
+                )
+                (curly_bracket_close)
+            )
+            
+        )
+        (semicolon)
+    )
+    (curly_bracket_close)
+)
+
+===
+arcs - inline expression - alt nested within a loop
+===
+
+msc {
+    a,b;
+
+    a loop b {
+        a alt b {
+            a => b;
+        };
+    };
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (entities
+        (entity
+            (entity_identifier)
+        )
+        (comma)
+        (entity
+            (entity_identifier)
+        )
+        (semicolon)
+    )
+    (arcs
+        (arc
+            (entity_identifier)
+            (inline_expression_token)
+            (entity_identifier)
+            (inline_expression
+                (curly_bracket_open)
+                (arcs
+                    (arc
+                        (entity_identifier)
+                        (inline_expression_token)
+                        (entity_identifier)
+                        (inline_expression
+                            (curly_bracket_open)
+                            (arcs
+                                (arc
+                                    (entity_identifier)
+                                    (forward_arrow)
+                                    (entity_identifier)
+                                )
+                                (semicolon)
+                            )
+                            (curly_bracket_close)
+                        )
+                    )
+                    (semicolon)
+                )
+                (curly_bracket_close)
+            )
+        )
+        (semicolon)
+    )
+        
+    (curly_bracket_close)
+)
+
+
+===
+arcs - inline expression - ERROR - without curly brackets
+===
+
+msc {
+    a,b;
+
+    a alt b;
+}
+
+---
+
+(sequence_chart
+    (start_token)
+    (curly_bracket_open)
+    (entities
+        (entity
+            (entity_identifier)
+        )
+        (comma)
+        (entity
+            (entity_identifier)
+        )
+        (semicolon)
+    )
+    (ERROR
+        (entity_identifier)
+        (inline_expression_token)
+        (entity_identifier)
+        (semicolon)
+    )
+    (curly_bracket_close)
+)

@@ -117,7 +117,7 @@ msc {
             (entity_identifier)
         )
         (ERROR 
-            (UNEXPECTED 'p')
+            (UNEXPECTED 'c')
         )
         (semicolon)
     )
